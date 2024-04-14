@@ -474,6 +474,98 @@
     ]
   },
   {
+    "id": "PER",
+    "type": "segment",
+    "name": "Administrative Communications Contact",
+    "req": "O",
+    "max_uses": 1,
+    "notes": "To identify a person or office to whom administrative communications should be directed",
+    "elements": [
+      {
+        "id": "PER01",
+        "type": "element",
+        "name": "Contact Function Code",
+        "req": "M",
+        "data_type": "ID",
+        "data_type_ids": {
+          "BD": "Buyer Name or Department"
+        },
+        "length": {
+          "min": 2,
+          "max": 2
+        },
+        "notes": "Code identifying the major duty or responsibility of the person or group named"
+      },
+      {
+        "id": "PER02",
+        "type": "element",
+        "name": "Name",
+        "req": "O",
+        "data_type": "AN",
+        "data_type_ids": null,
+        "length": {
+          "min": 1,
+          "max": 60
+        },
+        "notes": "Free-form name"
+      },
+      {
+        "id": "PER03",
+        "type": "element",
+        "name": "Communication Number Qualifier",
+        "req": "O",
+        "data_type": "ID",
+        "data_type_ids": {
+          "TE": "Telephone",
+          "EM": "Electronic Mail"
+        },
+        "length": {
+          "min": 2,
+          "max": 2
+        },
+        "notes": "Code identifying the type of communication number"
+      },
+      {
+        "id": "PER04",
+        "type": "element",
+        "name": "Communication Number",
+        "req": "O",
+        "data_type": "AN",
+        "data_type_ids": null,
+        "length": {
+          "min": 1,
+          "max": 2048
+        },
+        "notes": "Complete communications number including country or area code when applicable"
+      }
+    ]
+  },
+  {
+    "id": "FOB",
+    "type": "segment",
+    "name": "F.O.B. Related Instructions",
+    "req": "O",
+    "max_uses": 1,
+    "notes": "To specify transportation instructions relating to shipment",
+    "elements": [
+      {
+        "id": "FOB01",
+        "type": "element",
+        "name": "Shipment Method of Payment Code",
+        "req": "M",
+        "data_type": "ID",
+        "data_type_ids": {
+          "PP": "Prepaid (By Seller)"
+        },
+        "length": {
+          "min": 2,
+          "max": 2
+        },
+        "notes": "Code identifying payment terms for transportation charges"
+      }
+    ]
+  },
+  {
     "id": "REF",
     "type": "segment",
     "name": "Reference Information",
@@ -543,8 +635,49 @@
         "req": "O",
         "data_type": "DT",
         "data_type_ids": null,
-        "length": { "min": 8, "max": 8 },
+        "length": {
+          "min": 8,
+          "max": 8
+        },
         "notes": "Date expressed as CCYYMMDD where CC represents the first two digits of the calendar year"
+      }
+    ]
+  },
+  {
+    "id": "MAN",
+    "type": "segment",
+    "name": "Marks and Numbers Information",
+    "req": "O",
+    "max_uses": 1,
+    "notes": "To indicate identifying marks and numbers for shipping containers",
+    "elements": [
+      {
+        "id": "MAN01",
+        "type": "element",
+        "name": "Marks and Numbers Qualifier",
+        "req": "M",
+        "data_type": "ID",
+        "data_type_ids": {
+          "PB": "Premarked by Buyer"
+        },
+        "length": {
+          "min": 2,
+          "max": 2
+        },
+        "notes": "Code specifying the application or source of Marks and Numbers"
+      },
+      {
+        "id": "MAN02",
+        "type": "element",
+        "name": "Marks and Numbers",
+        "req": "M",
+        "data_type": "AN",
+        "data_type_ids": null,
+        "length": {
+          "min": 1,
+          "max": 48
+        },
+        "notes": "Marks and numbers used to identify a shipment or parts of a shipment"
       }
     ]
   },
@@ -619,6 +752,91 @@
               "max": 80
             },
             "notes": "Code identifying a party or other code"
+          }
+        ]
+      },
+      {
+        "id": "N3",
+        "type": "segment",
+        "name": "Party Location",
+        "req": "O",
+        "max_uses": 1,
+        "notes": "To specify the location of the named party",
+        "elements": [
+          {
+            "id": "N301",
+            "name": "Address Information",
+            "type": "element",
+            "req": "M",
+            "data_type": "AN",
+            "data_type_ids": {},
+            "length": {
+              "min": 1,
+              "max": 55
+            },
+            "notes": "Address information"
+          },
+          {
+            "id": "N302",
+            "name": "Address Information",
+            "type": "element",
+            "req": "O",
+            "data_type": "AN",
+            "data_type_ids": {},
+            "length": {
+              "min": 1,
+              "max": 55
+            },
+            "notes": "Address information"
+          }
+        ]
+      },
+      {
+        "id": "N4",
+        "type": "segment",
+        "name": "Geographic Location",
+        "req": "O",
+        "max_uses": 1,
+        "notes": "To specify the geographic place of the named party",
+        "elements": [
+          {
+            "id": "N401",
+            "name": "City Name",
+            "type": "element",
+            "req": "O",
+            "data_type": "AN",
+            "data_type_ids": {},
+            "length": {
+              "min": 2,
+              "max": 30
+            },
+            "notes": "A combination of either N401 through N404, or N405 and N406 may be adequate to specify a location"
+          },
+          {
+            "id": "N402",
+            "name": "State or Province Code",
+            "type": "element",
+            "req": "O",
+            "data_type": "ID",
+            "data_type_ids": {},
+            "length": {
+              "min": 2,
+              "max": 2
+            },
+            "notes": "Code specifying the Standard State/Province as defined by appropriate government agency"
+          },
+          {
+            "id": "N403",
+            "name": "Postal Code",
+            "type": "element",
+            "req": "O",
+            "data_type": "ID",
+            "data_type_ids": {},
+            "length": {
+              "min": 3,
+              "max": 15
+            },
+            "notes": "Code specifying international postal zone code excluding punctuation and blanks (zip code for United States)"
           }
         ]
       }
@@ -987,6 +1205,89 @@
               "max": 80
             },
             "notes": "Identifying number for a product or service"
+          }
+        ]
+      },
+      {
+        "id": "PID",
+        "type": "segment",
+        "name": "PID - Product/Item Description",
+        "req": "O",
+        "repeat": 200,
+        "elements": [
+          {
+            "id": "PID01",
+            "name": "Item Description Type",
+            "type": "element",
+            "req": "M",
+            "data_type": "ID",
+            "data_type_ids": {
+              "A": "Alternate",
+              "F": "Free-form",
+              "S": "Structured",
+              "X": "Semi-structured"
+            },
+            "length": {
+              "min": 1,
+              "max": 1
+            },
+            "notes": "Code indicating the format of a description"
+          },
+          {
+            "id": "PID02",
+            "name": "Product Characteristic Code",
+            "type": "element",
+            "req": "O",
+            "data_type": "ID",
+            "data_type_ids": {
+              "F": "Free-form"
+            },
+            "length": {
+              "min": 1,
+              "max": 1
+            },
+            "notes": "Code defining the characteristic of a product"
+          },
+          {
+            "id": "PID03",
+            "name": "Agency Qualifier Code",
+            "type": "element",
+            "req": "O",
+            "data_type": "ID",
+            "data_type_ids": {
+              "UN": "U.S. Federal"
+            },
+            "length": {
+              "min": 2,
+              "max": 2
+            },
+            "notes": "Code identifying the agency assigning the code values"
+          },
+          {
+            "id": "PID04",
+            "name": "Product Description Code",
+            "type": "element",
+            "req": "O",
+            "data_type": "AN",
+            "data_type_ids": null,
+            "length": {
+              "min": 1,
+              "max": 12
+            },
+            "notes": "Code describing a product or process"
+          },
+          {
+            "id": "PID05",
+            "name": "Description",
+            "type": "element",
+            "req": "O",
+            "data_type": "AN",
+            "data_type_ids": null,
+            "length": {
+              "min": 1,
+              "max": 80
+            },
+            "notes": "Free-form description to clarify the related data elements and their content"
           }
         ]
       },
